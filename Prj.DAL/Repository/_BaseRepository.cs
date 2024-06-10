@@ -24,17 +24,18 @@ using System.Net;
 using Prj.COMMON.Extensions;
 using Prj.COMMON.DTO.Enums;
 using Prj.COMMON.Helpers;
+using MySql.Data.MySqlClient;
 
 namespace Prj.DAL.Repository
 {
     public abstract class _BaseRepository<T> where T : class
     {
 
-        private SqlConnection Connection
+        private MySqlConnection Connection
         {
             get
             {
-                return new SqlConnection(_constr);
+                return new MySqlConnection(CoreConfig.ConnectionString);
             }
         }
 
@@ -47,8 +48,7 @@ namespace Prj.DAL.Repository
 
         static _BaseRepository()
         {
-            var a = new SqlServerDialect();
-            DapperExtensions.DapperExtensions.SqlDialect = new SqlServerDialect();
+            DapperExtensions.DapperExtensions.SqlDialect = new OracleDialect();
             type = typeof(T);
             //_schema = typeof(T).GetMethod("GetSchema").Invoke(null, null).ToString();
             _tableName = type.CustomAttributes.Where(x => x.AttributeType.Name == "TableAttribute").FirstOrDefault().ConstructorArguments.FirstOrDefault().Value.ToString();
@@ -68,11 +68,6 @@ namespace Prj.DAL.Repository
         private long _kisiId;
         private string _loginName;
 
-        private string _makinaField = "Makina";
-        private string _sgZaman = "SGZaman";
-        private string _sgKullanici = "SGKullanici";
-        private string _zaman = "Zaman";
-        private string _kullanici = "Kullanici";
 
         private string _idField
         {
@@ -117,12 +112,12 @@ namespace Prj.DAL.Repository
                 if (isPropertyVar(_isDeletedField))
                 {
                     // query = String.Format("select * from {0} where ({1} = 0)", _tableName, _isDeletedField);
-                    query = String.Format("select * from {0} (nolock) where {1} = @ID and ({2} = 0)", _tableName, _idField, _isDeletedField);
+                    query = String.Format("select * from {0}  where {1} = @ID and ({2} = 0)", _tableName, _idField, _isDeletedField);
                 }
                 else
                 {
 
-                    query = String.Format("select * from {0} (nolock) where {1} = @ID", _tableName, _idField);
+                    query = String.Format("select * from {0}  where {1} = @ID", _tableName, _idField);
                 }
 
                 var data = con.Query<T>(query, new { ID = ID });
@@ -152,11 +147,11 @@ namespace Prj.DAL.Repository
             var query = "";
             if (isPropertyVar(_isDeletedField))
             {
-                query = String.Format("select * from {0} (nolock) where ({1} = 0) and ({2})", _tableName, _isDeletedField, whereQuery);
+                query = String.Format("select * from {0}  where ({1} = 0) and ({2})", _tableName, _isDeletedField, whereQuery);
             }
             else
             {
-                query = String.Format("select * from  {0} (nolock) where ({1})", _tableName, whereQuery);
+                query = String.Format("select * from  {0}  where ({1})", _tableName, whereQuery);
             }
 
 
@@ -196,11 +191,11 @@ namespace Prj.DAL.Repository
 
                 if (isPropertyVar(_isDeletedField))
                 {
-                    query = String.Format("select * from {0} (nolock) where ({1} = 0)", _tableName, _isDeletedField);
+                    query = String.Format("select * from {0}  where ({1} = 0)", _tableName, _isDeletedField);
                 }
                 else
                 {
-                    query = String.Format("select * from {0} (nolock)", _tableName);
+                    query = String.Format("select * from {0} ", _tableName);
                 }
 
 
@@ -222,12 +217,12 @@ namespace Prj.DAL.Repository
                 {
                     // query = String.Format("select * from {0} where ({1} = 0)", _tableName, _isDeletedField);
                     //  query = String.Format("select * from {0} where {1} = @ID and ({2} = 0)", _tableName, _idField, _isDeletedField);
-                    query = String.Format("select * from {0} (nolock) where ({3} = 0) ORDER BY ID OFFSET ({1}-1)*{2} ROWS FETCH NEXT {2} ROWS ONLY", _tableName, pageNumber, itemsPerPage, _isDeletedField);
+                    query = String.Format("select * from {0}  where ({3} = 0) ORDER BY ID OFFSET ({1}-1)*{2} ROWS FETCH NEXT {2} ROWS ONLY", _tableName, pageNumber, itemsPerPage, _isDeletedField);
 
                 }
                 else
                 {
-                    query = String.Format("select * from {0} (nolock) ORDER BY ID OFFSET ({1}-1)*{2} ROWS FETCH NEXT {2} ROWS ONLY", _tableName, pageNumber, itemsPerPage);
+                    query = String.Format("select * from {0}  ORDER BY ID OFFSET ({1}-1)*{2} ROWS FETCH NEXT {2} ROWS ONLY", _tableName, pageNumber, itemsPerPage);
                 }
 
 
@@ -247,11 +242,11 @@ namespace Prj.DAL.Repository
 
                 if (isPropertyVar(_isDeletedField))
                 {
-                    query = String.Format("select count(*) from {0} (nolock) where ({1} = 0)", _tableName, _isDeletedField);
+                    query = String.Format("select count(*) from {0}  where ({1} = 0)", _tableName, _isDeletedField);
                 }
                 else
                 {
-                    query = String.Format("select count(*) from {0} (nolock)", _tableName);
+                    query = String.Format("select count(*) from {0} ", _tableName);
                 }
 
                 var data = con.Query<int>(query, null).FirstOrDefault();
@@ -275,12 +270,12 @@ namespace Prj.DAL.Repository
             var query = "";
             if (isPropertyVar(_isDeletedField))
             {
-                query = String.Format("select * from {0} (nolock) where {1} and ({4} = 0) order by {2} {3}", _tableName, whereQuery, String.Join(",", orderList.ToArray()), orderOption, _isDeletedField);
+                query = String.Format("select * from {0}  where {1} and ({4} = 0) order by {2} {3}", _tableName, whereQuery, String.Join(",", orderList.ToArray()), orderOption, _isDeletedField);
 
             }
             else
             {
-                query = String.Format("select * from {0} (nolock) where {1} order by {2} {3}", _tableName, whereQuery, String.Join(",", orderList.ToArray()), orderOption);
+                query = String.Format("select * from {0}  where {1} order by {2} {3}", _tableName, whereQuery, String.Join(",", orderList.ToArray()), orderOption);
 
             }
 
@@ -309,40 +304,7 @@ namespace Prj.DAL.Repository
                 return data;
             }
         }
-        public string CallSPWithSQLParams(SqlCommand sqlCommand, int type)
-        {
-            using (var con = this.Connection)
-            {
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
-                sqlCommand.Connection = con;
-                SqlDataReader rdr = sqlCommand.ExecuteReader();
-                string hata = "";
-                bool hasHata = false;
-                if (type == 1)
-                {
-                    while (rdr.Read())
-                    {
-                        if (Convert.ToInt32(rdr["Hata"]) != 0)
-                        {
-                            hata = rdr["Mesaj"].ToString();
-                            hasHata = true;
-                        }
-                    }
-                    if (hasHata)
-                    {
-                        return hata;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
 
-                return null;
-
-            }
-        }
         public List<T1> Query<T1>(string sql, object param)
         {
             using (var con = this.Connection)
@@ -366,21 +328,7 @@ namespace Prj.DAL.Repository
                 if (Transaction.Current != null)
                     con.EnlistTransaction(Transaction.Current);
 
-                //AKSİS 
-                if (isPropertyVar(_makinaField))
-                {
-                    typeof(T).GetProperty(_makinaField).SetValue(entity, _ipAddress, null);
-                }
-                if (isPropertyVar(_zaman))
-                {
-                    typeof(T).GetProperty(_zaman).SetValue(entity, DateTime.Now, null);
-                }
-                if (isPropertyVar(_kullanici))
-                {
-                    typeof(T).GetProperty(_kullanici).SetValue(entity, _loginName, null);
-                }
-                //OYS
-
+            
                 if (isPropertyVar(_createdDateField))
                 {
                     typeof(T).GetProperty(_createdDateField).SetValue(entity, DateTime.Now, null);
@@ -424,20 +372,7 @@ namespace Prj.DAL.Repository
 
                 foreach (var item in list)
                 {
-                    //AKSİS 
-                    if (isPropertyVar(_makinaField))
-                    {
-                        typeof(T).GetProperty(_makinaField).SetValue(item, _ipAddress, null);
-                    }
-                    if (isPropertyVar(_zaman))
-                    {
-                        typeof(T).GetProperty(_zaman).SetValue(item, DateTime.Now, null);
-                    }
-                    if (isPropertyVar(_kullanici))
-                    {
-                        typeof(T).GetProperty(_kullanici).SetValue(item, _loginName, null);
-                    }
-                    //OYS
+              
 
                     if (isPropertyVar(_createdDateField))
                     {
@@ -482,19 +417,7 @@ namespace Prj.DAL.Repository
 
                 con.EnlistTransaction(Transaction.Current);
 
-                if (isPropertyVar(_makinaField))
-                {
-                    typeof(T).GetProperty(_makinaField).SetValue(item, _ipAddress, null);
-                }
-                if (isPropertyVar(_zaman))
-                {
-                    typeof(T).GetProperty(_zaman).SetValue(item, DateTime.Now, null);
-                }
-                if (isPropertyVar(_kullanici))
-                {
-                    typeof(T).GetProperty(_kullanici).SetValue(item, _loginName, null);
-                }
-                //OYS
+       
 
                 if (isPropertyVar(_createdDateField))
                 {
@@ -571,20 +494,7 @@ namespace Prj.DAL.Repository
 
                 foreach (var item in list)
                 {
-                    //AKSİS
-                    if (isPropertyVar(_makinaField))
-                    {
-                        typeof(T).GetProperty(_makinaField).SetValue(item, _ipAddress, null);
-                    }
-                    if (isPropertyVar(_sgZaman))
-                    {
-                        typeof(T).GetProperty(_sgZaman).SetValue(item, DateTime.Now, null);
-                    }
-                    if (isPropertyVar(_sgKullanici))
-                    {
-                        typeof(T).GetProperty(_sgKullanici).SetValue(item, _loginName, null);
-                    }
-                    //OYS
+            
 
                     if (isPropertyVar(_modifiedDateField))
                     {
@@ -621,20 +531,7 @@ namespace Prj.DAL.Repository
                     con.EnlistTransaction(Transaction.Current);
                 //typeof(T).GetProperty(_modifiedDateField).SetValue(entity, DateTime.Now, null);
 
-                //AKSİS
-                if (isPropertyVar(_makinaField))
-                {
-                    typeof(T).GetProperty(_makinaField).SetValue(entity, _ipAddress, null);
-                }
-                if (isPropertyVar(_sgZaman))
-                {
-                    typeof(T).GetProperty(_sgZaman).SetValue(entity, DateTime.Now, null);
-                }
-                if (isPropertyVar(_sgKullanici))
-                {
-                    typeof(T).GetProperty(_sgKullanici).SetValue(entity, _loginName, null);
-                }
-                //OYS
+         
 
                 if (isPropertyVar(_modifiedDateField))
                 {

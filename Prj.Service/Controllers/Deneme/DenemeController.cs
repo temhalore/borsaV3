@@ -2,6 +2,8 @@
 using Microsoft.JSInterop;
 using Minio.DataModel;
 using Nest;
+using Prj.BAL.Managers.Deneme.Interfaces;
+using Prj.BAL.Managers.Uygulama.Interfaces;
 using Prj.COMMON.DTO.Base;
 using Prj.COMMON.Models;
 using Prj.COMMON.Models.ServiceResponce;
@@ -14,11 +16,13 @@ namespace OYS.API.Controllers
     [ApiController]
     public class DenemeController : ControllerBase
     {
-     //   private readonly IDenemeManager _denemeManager;
+       private readonly IDenemeManager _denemeManager;
+       private readonly IKodManager _kodManager;
 
-        public DenemeController()
+        public DenemeController(IDenemeManager denemeManager, IKodManager kodManager)
         {
-    //        _denemeManager = denemeManager;
+          _denemeManager = denemeManager;
+            _kodManager = kodManager;
         }
 
 
@@ -100,5 +104,31 @@ namespace OYS.API.Controllers
                 return Ok(response);
             }
         }
+
+
+        [HttpGet]
+        [Route("GetCodeByTipId")]
+        public IActionResult GetCodeByTipId()
+        {
+            var response = new ServiceResponse<object>();
+            try
+            {
+                var aa = _kodManager.GetKodDtoListByKodTipId(103);
+                response.data = aa;
+                return Ok(response);
+            }
+            catch (AppException appEx)
+            {
+                response = new ServiceResponse<object>(appEx);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.message = ex.Message;
+                response.messageType = MessageType.Error.ToString();
+                return Ok(response);
+            }
+        }
+
     }
 }
