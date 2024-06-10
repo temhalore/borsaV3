@@ -1,0 +1,12 @@
+{
+  //uygulamaya özel olanları burada tutalım program.cs te çekip mapliyor
+  "MyAppConfig": {
+    "HalkBankApiUrl": "https://entegrasyon.asseco-see.com.tr/fim", //"https://sanalpos.halkbank.com.tr/fim",
+    "OdemeExpDakika": 10,
+    "OdemeSayfasiUrl": "/online-payment", //odemeleri alacagimiz sayfa key ile açılır bunu karşıya göndermekte kullancağız 
+    "YonlendirmeSayfasiUrl": "/odemeSonucuSayfasi", // biz önce buraya bu sayfadanda gelen isteğin return url sine yönlendireceğiz önce bi biz bi mesaj verelim karşı sayfa vermez falan 
+    "DogrulamaMetodu3DApi": "/odemesayfasi/save3dOdeme", // 3d için gidildikten sonra araci kurumun bize post metodu olarak duseceği metod linki.Bunu 3d için token alırken göndereceğiz.
+    "SonucSayfasi": "/success-payment" // saveodeme yönteminden sonra buraya gideceğiz.Bu sayfa key alacak ve gelip key sorgusu yaparak sayfada sonucu gösterip gerekli yönlendirmeleri yapacak
+
+  }
+}

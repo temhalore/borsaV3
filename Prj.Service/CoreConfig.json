@@ -1,0 +1,20 @@
+{
+  "CoreConfig": {
+    "ConnectionString": "Server=161.9.143.102;Database=aaaaaa;User Id=aaaaaaa;Password=aaaaaaaaaa;",
+    "IDProperty": "ID",
+    "CreatedDateProperty": "CREATEDDATE",
+    "CreatedUserProperty": "CREATEDUSER",
+    "ModifiedDateProperty": "MODIFIEDDATE",
+    "ModifiedUserProperty": "MODIFIEDUSER",
+    "CreatedIpAdressProperty": "",
+    "ModifiedIpAdressProperty": "",
+    "IsDeletedProperty": "ISDELETED",
+    "TokenKeyName": "tlbToken",
+    "TokenCreateMin": "5", // token ilk oluþturulurken verilecek dakika
+    "TokenExpAddMin": "1", // TokenExpAddMin arttýrma dakikasý
+    "TokenExpMin": "1", // min exp kontrol dakikasý
+    "UygulamaWebPath": "http://161.9.143.244:8112/sanal-pos", // burası ne ise o olacak şuan sanalposuniki
+    "UygulamaApiPath": "http://161.9.143.244:8111/api", // burası ne ise o olacak
+    "superToken": "asafasfaf3f4f334g3vrbbe"
+  }
+}

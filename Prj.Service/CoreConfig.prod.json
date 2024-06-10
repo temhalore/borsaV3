@@ -1,0 +1,23 @@
+{
+  "CoreConfig": {
+    "ConnectionString": "Server=161.9.143.102;Database=SanalPos_Test;User Id=U_sanalpos;Password=Snl102Ps123*;",
+    "IDProperty": "ID",
+    "CreatedDateProperty": "CREATEDDATE",
+    "CreatedUserProperty": "CREATEDUSER",
+    "ModifiedDateProperty": "MODIFIEDDATE",
+    "ModifiedUserProperty": "MODIFIEDUSER",
+    "CreatedIpAdressProperty": "",
+    "ModifiedIpAdressProperty": "",
+    "IsDeletedProperty": "ISDELETED",
+    "TokenKeyName": "spToken",
+    "TokenCreateMin": "5", // token ilk oluþturulurken verilecek dakika
+    "TokenExpAddMin": "1", // TokenExpAddMin arttýrma dakikasý
+    "TokenExpMin": "1", // min exp kontrol dakikasý
+    "UygulamaWebPath": "http://161.9.143.244:8112/sanal-pos",
+    "UygulamaApiPath": "http://161.9.143.244:8111/api",
+    "SSOUygulamaKod": "",
+    "SSOUygulamaParola": "",
+    "SSOHostUrl": "",
+    "superToken": "drh3wfsfsg43g554gbbr5tee"
+  }
+}

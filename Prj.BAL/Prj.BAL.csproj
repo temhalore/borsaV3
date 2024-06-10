@@ -14,4 +14,9 @@
     <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Prj.COMMON\Prj.COMMON.csproj" />
+    <ProjectReference Include="..\Prj.DAL\Prj.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

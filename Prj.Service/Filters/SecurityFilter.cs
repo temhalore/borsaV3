@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Nest;
 using Newtonsoft.Json;
 using Prj.COMMON.Configuration;
-using Prj.COMMON.DTO.Odeme;
 using Prj.COMMON.Extensions;
 using Prj.COMMON.Models;
 using System.Collections.Immutable;
@@ -24,13 +23,12 @@ namespace Prj.Service.Filters
         {
             
             var dictionary = new Dictionary<string, string>();
-            if (context.HttpContext.Request.RouteValues["action"].ToString() == "save3dOdeme") {
-                //string jsonString = JsonConvert.SerializeObject(context.HttpContext.Request.Form);
-                //context.HttpContext.Items["Netpay3DResponceData"] = context.HttpContext.Request.Form;
-                context.HttpContext.Items["Netpay3DResponceDataDictionary"] = context.HttpContext.Request.Form.ToDictionary(x => x.Key, x => x.Value.FirstOrDefault());
-         
+            // contexte birşeyler yakalamak için ae
+            if (context.HttpContext.Request.RouteValues["action"].ToString() == "save3dOdeme") // action olarak save3dOdeme metodumuz çağrıldıysa gelen requestten datata yakalamak için
+            { 
+              //context.HttpContext.Items["Netpay3DResponceDataDictionary"] = context.HttpContext.Request.Form.ToDictionary(x => x.Key, x => x.Value.FirstOrDefault());
 
-                //context.HttpContext.Items["Netpay3DResponceStringData"] = jsonString;
+
             }
 
             refreshToken = context.HttpContext.Request.Headers["refreshToken"].ToString();

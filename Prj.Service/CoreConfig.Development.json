@@ -1,0 +1,23 @@
+{
+  "CoreConfig": {
+    "ConnectionString": "Server=161.9.143.102;Database=BilFakHiz_Test;User Id=U_bilFakHiz;Password=aaaaaaaaaa;",
+    "IDProperty": "ID",
+    "CreatedDateProperty": "CREATEDDATE",
+    "CreatedUserProperty": "CREATEDUSER",
+    "ModifiedDateProperty": "MODIFIEDDATE",
+    "ModifiedUserProperty": "MODIFIEDUSER",
+    "CreatedIpAdressProperty": "",
+    "ModifiedIpAdressProperty": "",
+    "IsDeletedProperty": "ISDELETED",
+    "TokenKeyName": "bfhToken",
+    "TokenCreateMin": "5", // token ilk oluþturulurken verilecek dakika
+    "TokenExpAddMin": "1", // TokenExpAddMin arttýrma dakikasý
+    "TokenExpMin": "1", // min exp kontrol dakikasý
+    "UygulamaWebPath": "http://161.9.143.244:8112/sanal-pos", // burası ne ise o olacak şuan sanalposuniki
+    "UygulamaApiPath": "http://161.9.143.244:8111/api", // burası ne ise o olacak
+    "SSOUygulamaKod": "",
+    "SSOUygulamaParola": "",
+    "SSOHostUrl": "",
+    "superToken": "drdsfsdg323fdssbbr5tee"
+  }
+}
