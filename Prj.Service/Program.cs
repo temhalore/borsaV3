@@ -121,12 +121,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TemhaLoreBorsaV3.Api v1");
-        c.RoutePrefix = "";
+    
+   app.UseSwaggerUI(c =>
+   {
+       c.SwaggerEndpoint("/swagger/v1/swagger.json", "TemhaLoreBorsaV3.Api");
+       //c.RoutePrefix = "";  //bundan dolayı çalışmıyor bunun ayarı başka yerden ??!!!!
 
-    });
+   });
+
     // app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     //app.UseHsts();

@@ -43,7 +43,7 @@ namespace Prj.BAL.Managers.Deneme
 
         public List<string> GetDBTableNameList()
         {
-            var repo = new GenericRepository<T_Pos_Kod>();
+            var repo = new GenericRepository<t_kod>();
 
             var tableNameList = repo.Query<string>("SELECT  TABLE_SCHEMA+'.'+TABLE_NAME   FROM INFORMATION_SCHEMA.TABLES order by TABLE_SCHEMA+'.'+TABLE_NAME", null).ToList();
 

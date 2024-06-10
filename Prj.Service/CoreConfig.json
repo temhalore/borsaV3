@@ -1,6 +1,6 @@
 {
   "CoreConfig": {
-    "ConnectionString": "Server=161.9.143.102;Database=aaaaaa;User Id=aaaaaaa;Password=aaaaaaaaaa;",
+    "ConnectionString": "Server=94.73.147.166;Port=3306;Database=u1555990_BorsaV2;User ID=u1555990_Uborsa;Password=M28eg@MuQj_08.:Q;",
     "IDProperty": "ID",
     "CreatedDateProperty": "CREATEDDATE",
     "CreatedUserProperty": "CREATEDUSER",
@@ -9,7 +9,7 @@
     "CreatedIpAdressProperty": "",
     "ModifiedIpAdressProperty": "",
     "IsDeletedProperty": "ISDELETED",
-    "TokenKeyName": "tlbToken",
+    "TokenKeyName": "temhaloreBorsaToken",
     "TokenCreateMin": "5", // token ilk oluþturulurken verilecek dakika
     "TokenExpAddMin": "1", // TokenExpAddMin arttýrma dakikasý
     "TokenExpMin": "1", // min exp kontrol dakikasý

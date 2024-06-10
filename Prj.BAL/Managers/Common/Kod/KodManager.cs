@@ -4,7 +4,6 @@ using Prj.BAL.Managers.Uygulama.Interfaces;
 using Prj.COMMON.Configuration;
 using Prj.COMMON.DTO.Common;
 using Prj.COMMON.DTO.Enums;
-using Prj.COMMON.DTO.Kip;
 using Prj.COMMON.Extensions;
 using Prj.COMMON.Models;
 using Prj.DAL.Model;
@@ -46,7 +45,7 @@ namespace Prj.BAL.Managers.Common.Kod
 
             if (cacheYenilensinMi)
             {
-                var repo = new GenericRepository<T_Pos_Kod>();
+                var repo = new GenericRepository<t_kod>();
 
                 var data = repo.GetList();
 
@@ -57,7 +56,7 @@ namespace Prj.BAL.Managers.Common.Kod
                     KodDTO dto = new KodDTO();
                     try
                     {
-                        dto = _mapper.Map<T_Pos_Kod, KodDTO>(item);
+                        dto = _mapper.Map<t_kod, KodDTO>(item);
                       //  dto = _modelDtoConverterHelper.T_oys_KodToKodDTO(item);
                     }
                     catch (Exception e)
@@ -138,9 +137,9 @@ namespace Prj.BAL.Managers.Common.Kod
 
         public KodDTO GetKodDtoByKodId(int kodId)
         {
-                var repoKod = new GenericRepository<T_Pos_Kod>();
+                var repoKod = new GenericRepository<t_kod>();
                 var kod = repoKod.Get(kodId);
-           var  dto = _mapper.Map<T_Pos_Kod, KodDTO>(kod);
+           var  dto = _mapper.Map<t_kod, KodDTO>(kod);
             return dto;
             }
 

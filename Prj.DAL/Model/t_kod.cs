@@ -18,48 +18,51 @@ namespace Prj.DAL.Model
 {
 
 
-    [Dapper.Contrib.Extensions.Table("Pos.Kod")]
+    //[Dapper.Contrib.Extensions.Table("u1555990_borsav2.t_kod")] --ae değişiklik
+	[Dapper.Contrib.Extensions.Table("t_kod")]
 
-    public partial class T_Pos_Kod    {
-		public T_Pos_Kod()
+    //public partial class T_u1555990_borsav2_t_kod --ae değişiklik
+	 public partial class t_kod    {
+		//public T_u1555990_borsav2_t_kod()--ae değişiklik
+		public t_kod()
 		{
 		}
 
-        //public static string SchemeName { get { return "Pos"; } }
-        public static string GetSchema() { return "Pos"; }
+        //public static string SchemeName { get { return "u1555990_borsav2"; } }
+        public static string GetSchema() { return "u1555990_borsav2"; }
 
         [Required]
 		[Dapper.Contrib.Extensions.Key]
         public int ID { get; set;}
-        [Required]
-        public int TIP_ID { get; set;}
+        public long? TIP_ID { get; set;}
         public string KOD { get; set;}
-        [Required]
-        public int SIRA { get; set;}
+        public int? SIRA { get; set;}
         public string KISA_AD { get; set;}
         public string DIGER_UYG_ENUM_AD { get; set;}
         public int? DIGER_UYG_ID { get; set;}
+        public string COLUMN4 { get; set;}
         [Required]
-        public bool ISDELETED { get; set;}
+        public int ISDELETED { get; set;}
         public long? CREATEDUSER { get; set;}
         public DateTime? CREATEDDATE { get; set;}
         public long? MODIFIEDUSER { get; set;}
         public DateTime? MODIFIEDDATE { get; set;}
-        public string CREATEDIP { get; set;}
-        public string MODIFIEDIP { get; set;}
     }
 	
     
-    public class T_Pos_KodMapper : AutoClassMapper<T_Pos_Kod>
+   // public class T_u1555990_borsav2_t_kodMapper : AutoClassMapper<T_u1555990_borsav2_t_kod> --ae değişiklik
+	public class t_kodMapper : AutoClassMapper<t_kod>
     {
-        public T_Pos_KodMapper()
+        //public T_u1555990_borsav2_t_kodMapper() --ae değişiklik
+		public t_kodMapper()
             : base()
         {
-            Schema("Pos");
+            Schema("u1555990_borsav2");
         }
     }
  
-	public enum T_Pos_Kod_Properties {
+	//public enum T_u1555990_borsav2_t_kod_Properties {--ae değişiklik
+	public enum t_kod_Properties {
 
 		ID,
 		TIP_ID,
@@ -68,13 +71,12 @@ namespace Prj.DAL.Model
 		KISA_AD,
 		DIGER_UYG_ENUM_AD,
 		DIGER_UYG_ID,
+		COLUMN4,
 		ISDELETED,
 		CREATEDUSER,
 		CREATEDDATE,
 		MODIFIEDUSER,
 		MODIFIEDDATE,
-		CREATEDIP,
-		MODIFIEDIP,
 		
 	}	
 }

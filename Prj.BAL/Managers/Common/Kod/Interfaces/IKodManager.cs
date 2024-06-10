@@ -2,7 +2,6 @@
 
 using Prj.COMMON.DTO.Common;
 using Prj.COMMON.DTO.Enums;
-using Prj.COMMON.DTO.Kip;
 using Prj.DAL.Model;
 
 namespace Prj.BAL.Managers.Uygulama.Interfaces

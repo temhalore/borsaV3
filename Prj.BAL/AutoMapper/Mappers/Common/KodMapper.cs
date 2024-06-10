@@ -19,7 +19,7 @@ public class KodMapper : MappingProfile
 
     public KodMapper()
     {
-        CreateMap<T_Pos_Kod, KodDTO>()
+        CreateMap<t_kod, KodDTO>()
            .ForMember(x => x.id, y => y.MapFrom(z => z.ID))
                 .ForMember(x => x.tipId, y => y.MapFrom(z => z.TIP_ID))
                 .ForMember(x => x.kod, y => y.MapFrom(z => z.KOD))

@@ -85,19 +85,23 @@ foreach(Table tbl in from t in tables select t)
 		tbl.ClassName = tbl.Name;
 	}
 
-manager.StartNewFile("T_" + tbl.Schema +"_"+tbl.Name + ".cs");
+//manager.StartNewFile("T_" + tbl.Schema +"_"+tbl.Name + ".cs"); --ae değişiklik
+manager.StartNewFile(tbl.Name + ".cs");
 #>
 <# if (MakeSingular) {#>
 	[Alias("<#=tbl.Name#>")]
 <#}#>
 
 
-    [Dapper.Contrib.Extensions.Table("<#=tbl.Schema#>.<#=tbl.Name#>")]
+    //[Dapper.Contrib.Extensions.Table("<#=tbl.Schema#>.<#=tbl.Name#>")] --ae değişiklik
+	[Dapper.Contrib.Extensions.Table("<#=tbl.Name#>")]
 
-    public partial class T_<#=tbl.Schema#>_<#=tbl.Name#><#if (tbl.HasPK() && UseIdAsPK) { #> : IHasId<<#=tbl.PK.PropertyType#>><#}#>
+    //public partial class T_<#=tbl.Schema#>_<#=tbl.Name#><#if (tbl.HasPK() && UseIdAsPK) { #> : IHasId<<#=tbl.PK.PropertyType#>><#}#> --ae değişiklik
+	 public partial class <#=tbl.Name#><#if (tbl.HasPK() && UseIdAsPK) { #> : IHasId<<#=tbl.PK.PropertyType#>><#}#>
     {
 <# if (GenerateConstructor) { #>
-		public T_<#=tbl.Schema#>_<#=tbl.Name#>()
+		//public T_<#=tbl.Schema#>_<#=tbl.Name#>()--ae değişiklik
+		public <#=tbl.Name#>()
 		{
 		}
 
@@ -178,16 +182,19 @@ foreach(Column col in from c in tbl.Columns where !c.Ignore select c)
     }
 	
     
-    public class T_<#=tbl.Schema#>_<#=tbl.Name#>Mapper : AutoClassMapper<T_<#=tbl.Schema#>_<#=tbl.Name#>>
+   // public class T_<#=tbl.Schema#>_<#=tbl.Name#>Mapper : AutoClassMapper<T_<#=tbl.Schema#>_<#=tbl.Name#>> --ae değişiklik
+	public class <#=tbl.Name#>Mapper : AutoClassMapper<<#=tbl.Name#>>
     {
-        public T_<#=tbl.Schema#>_<#=tbl.Name#>Mapper()
+        //public T_<#=tbl.Schema#>_<#=tbl.Name#>Mapper() --ae değişiklik
+		public <#=tbl.Name#>Mapper()
             : base()
         {
             Schema("<#=tbl.Schema#>");
         }
     }
  
-	public enum T_<#=tbl.Schema#>_<#=tbl.Name#>_Properties {
+	//public enum T_<#=tbl.Schema#>_<#=tbl.Name#>_Properties {--ae değişiklik
+	public enum <#=tbl.Name#>_Properties {
 
 	<#
 		foreach(Column col in from c in tbl.Columns where !c.Ignore select c)

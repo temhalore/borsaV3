@@ -27,7 +27,7 @@ using Prj.COMMON.Helpers;
 
 namespace Prj.DAL.Repository
 {
-    public abstract class _BaseRepository<T> where T : class 
+    public abstract class _BaseRepository<T> where T : class
     {
 
         private SqlConnection Connection
@@ -95,16 +95,16 @@ namespace Prj.DAL.Repository
         {
             this._ipAddress = "";
             this._kisiId = 0;
-            this._loginName="";
+            this._loginName = "";
         }
 
-      //  public _BaseRepository(KisiTokenDTO contx)
-      //  {
-      //      this._kisiTokenDto = contx;
-      //      this._ipAddress = _kisiTokenDto.ip;
-      //      this._kisiId = _kisiTokenDto.kisiDto.id;
-      //      this._loginName = _kisiTokenDto.loginName;
-      //  }
+        //  public _BaseRepository(KisiTokenDTO contx)
+        //  {
+        //      this._kisiTokenDto = contx;
+        //      this._ipAddress = _kisiTokenDto.ip;
+        //      this._kisiId = _kisiTokenDto.kisiDto.id;
+        //      this._loginName = _kisiTokenDto.loginName;
+        //  }
 
         public T Get(long ID)
         {
@@ -796,10 +796,10 @@ namespace Prj.DAL.Repository
             //var aaaa = m1.IsGenericMethodDefinition;
             //var aaaaa = m1.ReflectedType.Name ;
             //var aaaaaa = m1.ReflectedType.FullName ;
-          //  if (_kisiTokenDto != null && _kisiTokenDto.isYerineLogin && !yerineLogindeGecilebilecekSaveMetodlariList().Contains(metod))
-          //  {
-          //      throw new AppException(MessageCode.ERROR_500, $"Yerine Login Olduğunuz için kaydetme/güncelleme/silme işlemi yapılamaz.");
-          //  }
+            //  if (_kisiTokenDto != null && _kisiTokenDto.isYerineLogin && !yerineLogindeGecilebilecekSaveMetodlariList().Contains(metod))
+            //  {
+            //      throw new AppException(MessageCode.ERROR_500, $"Yerine Login Olduğunuz için kaydetme/güncelleme/silme işlemi yapılamaz.");
+            //  }
 
             return false;
             // string metod = "";
@@ -814,7 +814,7 @@ namespace Prj.DAL.Repository
 
         public bool Save(T entity, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
-        
+
             checkYerineLogin(memberName);
 
             bool value = false;
